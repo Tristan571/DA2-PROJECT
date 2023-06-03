@@ -1,0 +1,39 @@
+
+{% block content %}
+<h3>Browse Topics</h3>
+<hr>
+<div>
+    <!-- <form method="GET" action="{% url 'search' %}">
+        <input class="search-bar" type="text" name="qBookName" placeholder="Search Books...">
+    </form> -->
+    <form method="GET" action="{% url 'search' %}">
+        <input class="search-bar" type="text" name="q" placeholder="Search..." required>
+        <div class="custom-select">
+            <select id="search_type" name="search_type" required>
+                <option value="">Search by: </option>
+                <option value="author">Author</option>
+                <option value="title" selected>Title</option>
+                <option value="year">Year</option>
+                <option value="isbn">ISBN</option>
+            </select>
+        </div>
+        <button style=" margin-left: 48px;
+                        margin-top: 10px;
+                        width: 151px;
+                        background-color: #4caf50;" type="submit"
+                        >Search</button>
+    </form>
+</div>
+<div>
+    
+    <a href="{% url 'search' %}">All</a>
+</div>
+
+{% for topic in topics %}
+    <div>
+        <a href="{% url 'search'%}?q={{topic.name}} ">{{ topic.name }}</a>
+    </div>
+{% endfor %}
+
+{% endblock content %}
+

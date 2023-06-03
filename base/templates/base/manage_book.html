@@ -1,0 +1,112 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    img {
+        width: 100px;
+        height: 150px;
+    }
+  </style>
+<div>
+  <h3>Books</h3>
+  <table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Book ID</th>
+            <th>Name</th>
+            <th>Author(s)</th>
+            <th>Language(s)</th>
+            <th>Publisher(s)</th>
+            <th>Position</th>
+            <th>Stock</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for book in books %}
+          
+          {% if book.returnDate == None %}
+            <tr>
+              <td><img src="{{book.image.url}}" alt=""></td>
+              <td>{{book.bookID}}</td>
+              <td>{{book.name}}</td>
+              <td>
+                  {% for author in book.authorID.all %}
+                  {{ author.name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+              </td>
+              <td>
+                  
+                  {% for language in book.languageID.all %}
+                      {{language.languageID}}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                      
+              </td>
+              <td>
+                  
+                  {% for publisher in book.publisherID.all %}
+                      {{publisher.name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                      
+              </td>
+              <td>{{book.positionID}}</td>
+              <td>{{book.stock}}</td>
+              <td><button>Edit</button></td>
+
+          </tr>
+          {% else %}
+          <tr>
+            <td><img src="{{book.image.url}}" alt=""></td>
+            <td>{{book.bookID}}</td>
+            <td>{{book.name}}</td>
+            <td>
+                {% for author in book.authorID.all %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                
+                {% for language in book.languageID.all %}
+                    {{language.languageID}}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                    
+            </td>
+            <td>
+                
+                {% for publisher in book.publisherID.all %}
+                    {{publisher.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                    
+            </td>
+            <td>{{book.positionID}}</td>
+            <td>{{book.stock}}</td>
+            <td><button>Edit</button></td>
+
+        </tr>
+          {% endif %}
+            
+        {% endfor %}
+            
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

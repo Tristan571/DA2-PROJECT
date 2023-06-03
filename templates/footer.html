@@ -1,0 +1,47 @@
+{% load static %}
+<footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-info">
+        <img src="{% static 'logo/logo.svg' %}" alt="Your logo" />
+        <p>215 Dien Bien Phu Street</p>
+        <p>Ward 25, Binh Thanh District, Ho Chi Minh City</p>
+        <p>Phone: 123-456-7890</p>
+      </div>
+      <div class="footer-map">
+        <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d721.1690454769471!2d106.70602457094742!3d10.800196149677006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528ba1cb685bd%3A0xb9f804a2ed48643a!2sHong%20Bang%20International%20University%20(HIU)!5e0!3m2!1sen!2s!4v1683124570984!5m2!1sen!2s" 
+        width="500" 
+        height="350" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      </div>
+      <div class="footer-social">
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div>
+        <div class="credit">Created by <span>Nguyen Phan Quoc Tri</span> | all rights reserved! </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+  .credit{
+    border-top: var(--border);
+    margin-top: 2rem;
+    padding:0 1rem;
+    padding-top: 2.5rem;
+    font-size: 18px;
+    color:var(--light-color);
+    text-align: center;
+}
+
+.credit span{
+    color: #559dad;
+}
+  </style>

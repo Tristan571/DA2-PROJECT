@@ -1,0 +1,87 @@
+{% extends "main.html" %} 
+{% load static %} 
+
+{% block style %}
+  <style>
+    
+
+  </style>
+{% endblock style %}
+  
+{% block content %}
+<h1>Cart</h1>
+
+{% if not books %}
+<h3>Your cart is empty.</h3>
+{% else %}
+
+<div style="display: flex;">
+  <div class="cart-container">
+    <div class="cart-items">
+      <table style="width: 900px;">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+  
+            <th>Quantity</th>
+            <th>Rental Fee</th>
+            <th>Total</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart %}
+  
+          <tr>
+            <td>
+              <a href="{% url 'oneBook' pk=item.book.bookID %}">
+                <img
+                style="width: 100px; height: 150px"
+                src="{{item.book.image.url}}"
+                alt=""
+              />
+              </a>
+            </td>
+            <td>{{item.book.name}}</td>
+  
+            <td>{{item.quantity}}</td>
+            <td>$1.5</td>
+  
+            <!-- {% for value in each_book_total %}
+                  <td>{{value}}</td>
+            {% endfor %} -->
+  
+            <td>${{ item.total_price }}</td>
+  
+            <td>
+              <form method="POST" action="">
+                <a href="{% url 'removeBook' pk=item.book.bookID %}" class="btn btn-primary">Remove</a>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+      </table>
+    </div>
+  
+    <div class="cart-total" style="width: 300px;">
+      <h2>CART TOTAL</h2>
+      <div class="price-details">
+        <p>Totol book: {{cart.get_books_count}}</p>
+        <p>Rental price: $1.5</p>
+        <p>Total: <strong>${{cart.get_total_price}}</strong></p>
+      </div>
+      <form action=" {% url 'rent' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="buy-button">RENT</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %} 
+<div>
+  {% include 'footer.html' %}
+</div>
+{% endblock %}

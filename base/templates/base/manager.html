@@ -1,0 +1,134 @@
+{% extends 'main_management.html' %}
+
+
+{% block style %}
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+}
+
+/* Grid styles */
+.manager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+section {
+    padding: 20px;
+    margin: 0;
+}
+
+section h2 {
+    margin-bottom: 10px;
+}
+
+/* Styling for the Overview section */
+.overview {
+    background-color: #f5f5f5;
+}
+
+/* Styling for the Books section */
+.books {
+    background-color: #fff;
+}
+
+/* Styling for the Members section */
+.members {
+    background-color: #f5f5f5;
+}
+
+/* Styling for the Finances section */
+.finances {
+    background-color: #fff;
+}
+
+/* Styling for the Staff section */
+.staff {
+    background-color: #f5f5f5;
+}
+
+/* Styling for the Feedback section */
+.feedback {
+    background-color: #fff;
+}
+    </style>
+{% endblock style %}
+    
+
+{% block content %}
+<div class="manager">
+    <div class="card">
+        <section class="overview">
+            <h2>Overview</h2>
+            <p>Total books: 500</p>
+            <p>Available books: 300</p>
+            <p>Members: 1,000</p>
+        </section>
+    </div>
+    <div class="card">
+        <section class="books">
+            <h2>Books</h2>
+            <p>Total books: 500</p>
+            <p>Available books: 300</p>
+            <p>Most popular book: To Kill a Mockingbird</p>
+        </section>
+    </div>
+    <div class="card">
+        <section class="members">
+            <h2>Members</h2>
+            <p>Total members: 1,000</p>
+            <p>New members this month: 50</p>
+            <p>Members with overdue books: 100</p>
+        </section>
+    </div>
+    <div class="card">
+        <section class="finances">
+            <h2>Finances</h2>
+            <p>Total revenue this month: $5,000</p>
+            <p>Total expenses this month: $3,000</p>
+            <p>Profit this month: $2,000</p>
+        </section>
+    </div>
+    <div class="card">
+        <section class="staff">
+            <h2>Staff</h2>
+            <p>Total staff: 10</p>
+            <p>New hires this month: 2</p>
+            <p>Staff turnover rate: 5%</p>
+        </section>
+    </div>
+    <div class="card">
+        <section class="feedback">
+            <h2>Feedback</h2>
+            <p>Total feedback received: 50</p>
+            <p>Average rating: 4.5 stars</p>
+            <p>Most common feedback: More books on popular topics</p>
+        </section>
+    </div>
+</div>
+{% endblock content %}
+    

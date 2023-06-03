@@ -1,0 +1,47 @@
+{% extends 'main.html' %} 
+
+{% load static %} 
+{% block content %}
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <!-- Browse by Topic component goes here -->
+        {% include 'base/topic_component.html' %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="card-search-result">
+      <div class="card-header-search">Search Results   </div>
+      
+      
+      {% if counts %}
+        <p style="white-space: pre;">:   There is/are <strong>{{counts}}</strong> book(s) in total</p>
+      {% endif %}
+        
+        
+      
+    </div>
+    <div>
+      {% include 'base/book_component.html' %}
+    </div>
+  </div>
+</div>
+<div>
+  {% include 'footer.html' %}
+</div>
+
+<style>
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    max-width: 95%;
+    margin: 5px;
+}
+</style>
+
+{% endblock content %}

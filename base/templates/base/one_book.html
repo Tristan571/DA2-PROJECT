@@ -1,0 +1,48 @@
+{% extends 'main.html' %} {% block content %}
+<div class="container-one-book">
+  <div class="book-img">
+    <img
+      
+      src="{{ book.image.url }}"
+      alt="{{ book.name }}"
+    />
+    <div>
+        <div>
+          
+          
+          {% if request.user.profile.role == '3' %}
+            <form method="POST" action="" >
+              <a href="{% url 'add_one_book' pk=book.bookID %}" class="rent-btn">Borrow Book &raquo;</a>
+            </form>
+          {% endif %}
+          
+        </div>
+      </div>
+  </div>
+  <div class="book-details">
+    <div class="book-info">
+        <h1 id="one-book-name" class="mb-3">{{ book.name }}</h1>
+        <p class="h4 mb-2"><strong>ISBN:</strong> {{ book.bookID }}</p>
+        <p class="h4 mb-2">
+          <strong>Author:</strong> {% for author in book.authorID.all %}
+          {{author.name }}{% if not forloop.last %}, {% endif %} {% endfor %}
+        </p>
+        
+        <p class="h4 mb-2"><strong>Published Date:</strong> {{ book.year }}</p>
+        <p class="h4 mb-2"><strong>Available Copies:</strong> {{ book.stock }}</p>
+        <p class="h4 mb-2"><strong>Category:</strong> {{ book.topicID.name }}</p>
+        <h4><strong>Price: </strong><strong style="color: brown;">{{book.price}}</strong></h4>
+      </div>
+      <div class="book-description">
+        <p><strong>Description:</strong> {{ book.description }}</p>
+      </div>
+  </div>
+  
+</div>
+
+<div>
+  {% include 'footer.html' %}
+</div>
+
+
+{% endblock content %}

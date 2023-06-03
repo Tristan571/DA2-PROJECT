@@ -1,0 +1,65 @@
+{% extends 'main_management.html' %} 
+{% load static %} 
+{% block content %}
+
+<div >
+  <div class="container-librarian">
+    <div class="header-librarian">
+      <h1>Librarian Management Dashboard</h1>
+    </div>
+    <div class="cards-librarian">
+      <div class="card-librarian">
+        <div class="card-librarian-header">
+          <h2>Total Books</h2>
+        </div>
+        <div class="card-librarian-body-librarian">
+          <p class="card-librarian-value">{{book_count}}</p>
+        </div>
+      </div>
+      <div class="card-librarian">
+        <div class="card-librarian-header">
+          <h2>Borrowed Books</h2>
+        </div>
+        <div class="card-librarian-body-librarian">
+          <p class="card-librarian-value">{{book_rental}}</p>
+        </div>
+      </div>
+      <div class="card-librarian">
+        <div class="card-librarian-header">
+          <h2>Available Books</h2>
+        </div>
+        <div class="card-librarian-body-librarian">
+          <p class="card-librarian-value">{{book_available}}</p>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex;margin-left: 430px;margin-bottom: 30px;">
+      
+      <form action="/admin/">
+        <button>GO TO MANAGEMENT PAGE</button>
+      </form>
+      
+    </div>
+    <div class="chart">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <script>
+    // Retrieve data from the context passed to the template
+    var chartData = JSON.parse('{{ chart_data_json|safe }}'); // the |safe filter is used to avoid escaping characters in the data
+  
+    // Create a new Chart object
+    new Chart(document.getElementById("myChart"), {
+      type: "line",
+      data: chartData,
+      options: {
+        title: {
+          display: true,
+          text: "Book Borrowing History",
+        },
+       },
+    });
+  </script>
+</div>
+
+{% endblock content %}

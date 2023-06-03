@@ -1,0 +1,148 @@
+
+{% extends 'main.html' %} 
+{% load static %}
+
+{% block content %}
+
+
+<div>
+  
+  <div class="container-profile">
+    <div class="profile">
+      <!-- <img src="https://source.unsplash.com/200x200/?portrait" alt="Profile Picture" /> -->
+      <h1>{{user.first_name}} {{user.last_name}}</h1>
+      <h2>READER CARD: {{user.profile.readerCard}}</h2>
+      <ul>
+        <li><strong>Username:</strong> {{user.username}}</li>
+        <li><strong>Email:</strong>{{user.email}}</li>
+        <li><strong>Phone:</strong> {{user.profile.phone}}</li>
+        <!-- <li><strong>Website:</strong> <a href="https://johndoe.com">johndoe.com</a></li> -->
+        <li><strong>Total spent:</strong>
+          {% if rents and rents.1.returnDate != None %}
+            {{totalRent}}
+          {% endif %}
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</div>
+<div>
+  
+  {% if rents and rents.0.returnDate == None %}
+  <h4>Book Rentals</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Book ID</th>
+        <th>Name</th>
+        <th>Rent Date</th>
+        <th>Return Date</th>
+        <th>Rent Condition</th>
+        <th>Return Condition</th>
+        <th>Extra Fee</th>
+        <th>Total Fee</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for rent in rents %} {% if rent.returnDate == None %}
+      <tr>
+        <td>
+          <img
+            style="width: 100px; height: 150px"
+            src="{{rent.bookID.image.url}}"
+            alt=""
+          />
+        </td>
+        <td>{{rent.bookID.bookID}}</td>
+        <td>{{rent.bookID.name}}</td>
+        <td>{{rent.rentDate}}</td>
+        {% if rent.returnDate == None %}
+        <td>UNRETURN</td>
+        {% else %}
+        <td>{{rent.returnDate}}</td>
+        {% endif %}
+        <td>{{rent.rentCondition}}</td>
+        <td>{{rent.returnCondition}}</td>
+        <td>
+          {% if rent.extraFee == 0 %}
+          <b>{{rent.extraFee}}</b>
+          {% else %}
+          <b style="color: red">{{rent.extraFee}}</b>
+          {% endif %}
+        </td>
+        <td><b>{{rent.totalFee}}</b></td>
+      </tr>
+      {% endif %} {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h2>No active rentals.</h2>  
+  {% endif %}
+    
+</div>
+<hr>
+<div>
+  {% if rents and rents.1.returnDate != None %}
+  <h4>Book Rentals History</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Book ID</th>
+        <th>Name</th>
+        <th>Rent Date</th>
+        <th>Return Date</th>
+        <th>Rent Condition</th>
+        <th>Return Condition</th>
+        <!-- <th>Extra Fee</th> -->
+        <th>Total Fee</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for rent in rents %} {% if rent.returnDate != None %}
+      <tr>
+        <td>
+          <img
+            style="width: 100px; height: 150px"
+            src="{{rent.bookID.image.url}}"
+            alt=""
+          />
+        </td>
+        <td>{{rent.bookID.bookID}}</td>
+        <td>{{rent.bookID.name}}</td>
+        <td>{{rent.rentDate}}</td>
+        {% if rent.returnDate == None %}
+        <td>UNRETURN</td>
+        {% else %}
+        <td>{{rent.returnDate}}</td>
+        {% endif %}
+        <td>{{rent.rentCondition}}</td>
+        <td>{{rent.returnCondition}}</td>
+        <!-- <td>
+          {% if rent.extraFee == 0 %}
+          <b>{{rent.extraFee}}</b>
+          {% else %}
+          <b style="color: red">{{rent.extraFee}}</b>
+          {% endif %}
+        </td> -->
+        <td><b>{{rent.totalFee}}</b></td>
+      </tr>
+      {% endif %} {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h2>No rental history.</h2>
+  {% endif %}
+  
+</div> 
+ 
+<div>
+  {% include 'footer.html' %}
+</div>
+
+{% endblock content %}
